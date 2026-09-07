@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PabePabe — Functional Surrealism | Sculptural Leather Objects</title>
+<meta name="description" content="PabePabe is a Hong Kong art-accessories brand making sculptural leather bags shaped like everyday objects. Functional Surrealism since 2018.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PabePabe">
+<meta property="og:title" content="PabePabe — Functional Surrealism | Sculptural Leather Objects">
+<meta property="og:description" content="PabePabe is a Hong Kong art-accessories brand making sculptural leather bags shaped like everyday objects. Functional Surrealism since 2018.">
+<meta property="og:url" content="https://pabepabe-preview.vercel.app/index.html">
+<meta property="og:image" content="https://pabepabe-preview.vercel.app/assets/img/hero-campaign.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="https://pabepabe-preview.vercel.app/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://pabepabe-preview.vercel.app/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://pabe-v5-code.vercel.app/css/main.min.css">
+<script>
+/* Pre-paint journey decision: the scroll journey (door → sky → shop floor)
+   only runs for first-time, full-motion arrivals on the bare homepage.
+   Everything else — returning visitors (30d), deep links with hash/query,
+   reduced motion, no-JS — lands directly on the shop content. */
+(function () {
+  try {
+    var d = document.documentElement;
+    d.classList.remove('no-js');
+    d.classList.add('js');
+    var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (motionOk) d.classList.add('motion-ok');
+    var seen = 0;
+    try { seen = +localStorage.getItem('pabe_gate_seen') || 0; } catch (e) {}
+    var returning = seen && (Date.now() - seen) < 2592e6; /* 30 days */
+    if (motionOk && !returning && !location.hash && !location.search) {
+      d.classList.add('journey-want');
+    } else {
+      d.classList.add('journey-skip');
+    }
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+
+<!-- Announcement bar: thin solid bar, rotating caps messages -->
+<div class="announce" id="announce">
+  <span>Ships worldwide from Hong Kong. Import duties may apply.</span>
+  <span>Collection 10 — Living/Room. Now showing.</span>
+  <span>Gallery+Store, 62B Staunton St, Central. Tue–Sun 14:00–19:00</span>
+</div>
+
+<!-- Header: transparent over hero, solidifies on scroll -->
+<header class="site-header site-header--over" id="site-header">
+  <div class="wrap site-header__bar">
+    <a class="logo" href="index.html" aria-label="PabePabe home">
+      <img class="logo__img logo__img--night" src="https://pabepabe-preview.vercel.app/assets/logo-night.png" alt="PabePabe" width="348" height="89">
+      <img class="logo__img logo__img--cream" src="https://pabepabe-preview.vercel.app/assets/logo-cream.png" alt="" aria-hidden="true" width="348" height="89">
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <ul>
+        <li class="has-mega"><a href="collection.html" aria-haspopup="true">Shop</a></li>
+        <li><a href="index.html#series">Series</a></li>
+        <li><a href="art-stories.html">Art Stories</a></li>
+        <li><a href="index.html#visit">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-util">
+      <button data-open-search aria-label="Search">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="5.75" cy="5.75" r="4.2" stroke="currentColor" stroke-width="1.3"/><path d="M9.5 9.5L13 13" stroke="currentColor" stroke-width="1.3"/></svg>
+        <span class="u-hide-m">Search</span>
+      </button>
+      <a href="art-stories.html" class="u-hide-m">Gallery+Store</a>
+      <button data-open-cart aria-label="Cart">
+        <span class="u-hide-m">Cart</span>
+        <svg class="u-show-m" viewBox="0 0 14 14" fill="none"><path d="M2.5 4.5h9l-.8 8.5H3.3l-.8-8.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M5 6V3.5a2 2 0 014 0V6" stroke="currentColor" stroke-width="1.2"/></svg>
+        <span data-cart-count></span>
+      </button>
+      <button class="icon-btn burger" data-open-menu aria-label="Open menu">
+        <svg viewBox="0 0 18 12" fill="none"><path d="M0 1h18M0 11h18" stroke="currentColor" stroke-width="1.4"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mega menu: 5 text columns, like theirs -->
+  <div class="mega" role="menu" aria-label="Objects menu">
+    <div class="mega__inner">
+      <div class="mega__col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a class="accent" href="collection.html">Collection 10 — Living/Room</a></li>
+          <li><a href="art-stories.html">Art Stories</a></li>
+          <li><a href="art-stories.html">Gallery+Store</a></li>
+          <li><a href="index.html#visit">Stockists</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <h3>Series</h3>
+        <ul>
+          <li><a href="collection.html?series=knob">KNOB</a></li>
+          <li><a href="collection.html?series=script">KNOB Script</a></li>
+          <li><a href="collection.html?series=sound">Sound Objects</a></li>
+          <li><a href="collection.html?series=rainboot">Rainboot</a></li>
+          <li><a href="collection.html?series=socket">Socket</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <h3>KNOB Line</h3>
+        <ul>
+          <li><a href="product.html">KNOB Bag Large</a></li>
+          <li><a href="collection.html?series=knob">KNOB Bag Small</a></li>
+          <li><a href="collection.html?series=knob">KNOB Mini</a></li>
+          <li><a href="collection.html?series=knob">KNOB Tote</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <h3>Sound Objects</h3>
+        <ul>
+          <li><a href="collection.html?series=sound">Ocarina Bag</a></li>
+          <li><a href="collection.html?series=sound">Lyre Bag</a></li>
+          <li><a href="collection.html?series=sound">Mini Kalimba</a></li>
+          <li><a href="collection.html?series=sound">MUYU Wooden Fish</a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <h3>Rainboot &amp; Socket</h3>
+        <ul>
+          <li><a href="collection.html?series=rainboot">Single Rainboot</a></li>
+          <li><a href="collection.html?series=rainboot">EarPod Mini Bag</a></li>
+          <li><a href="collection.html?series=rainboot">Ninja Phone Bag</a></li>
+          <li><a href="collection.html?series=socket">Socket Boston</a></li>
+          <li><a href="collection.html?series=socket">On-Off Bag</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- 0. THE JOURNEY — one continuous, reversible, scroll-scrubbed world.
+       We land at the door (S0); scrolling down approaches it, swings it ajar
+       and opens the sky (S1); the descent drifts past five real objects and
+       one transformation (S2–S3); the white shop floor rises and the objects
+       dock into the grid (S4). Scrolling up reverses through every scene.
+       Runs only for first-time, full-motion arrivals (html.journey-want);
+       everyone else lands directly on the shop content below. -->
+  <section class="journey" id="journey" aria-label="Collection 10 — a night-sky journey">
+    <div class="journey__sticky" id="j-sticky">
+
+      <!-- the sky: two painted backdrops crossfaded mid-journey so it never repeats -->
+      <div class="journey__sky" id="j-sky" aria-hidden="true">
+        <picture>
+          <source media="(max-width: 900px)" srcset="https://pabe-v5-sky.vercel.app/sky-backdrop.webp">
+          <img class="journey__sky-img" id="j-sky-a" src="https://pabe-v5-sky.vercel.app/sky-backdrop.webp" alt="" loading="lazy" fetchpriority="low" width="1536" height="1024">
+        </picture>
+        <img class="journey__sky-img journey__sky-img--alt" id="j-sky-b" src="https://pabe-v5-sky.vercel.app/sky-backdrop.webp" alt="" loading="lazy" fetchpriority="low" width="1536" height="1024">
+        <div class="journey__stars journey__stars--far" id="j-stars-far"></div>
+        <div class="journey__stars journey__stars--near" id="j-stars-near"></div>
+        <div class="journey__veil" id="j-veil"></div>
+      </div>
+
+      <!-- the descent cast: five real objects at Ernst scales + one transformation.
+           data-x/-y0: stage-% origin · data-v: rise speed (stage-heights per unit p)
+           data-p0/-p1: visibility window in journey progress · data-xm: mobile left -->
+      <div class="journey__title" data-p0=".24" data-p1=".58" data-v="-.28" style="--x:7%;--y:9%">
+        <span class="eyebrow">Now showing</span>
+        <h2>Collection 10 —<br>Living/Room</h2>
+      </div>
+
+      <figure class="floater" data-x="27" data-y0="74" data-v="-1.9" data-p0=".26" data-p1=".66" data-xm="14" style="--w:37vh;--wm:52vw">
+        <img src="https://pabepabe-preview.vercel.app/assets/img/cutouts/knob-large.png" alt="KNOB Bag Large" loading="lazy" fetchpriority="low" width="760" height="1427">
+      </figure>
+      <figure class="floater" data-x="67" data-y0="88" data-v="-1.5" data-p0=".36" data-p1=".74" data-xm="58" style="--w:23vh;--wm:30vw">
+        <img src="https://pabepabe-preview.vercel.app/assets/img/cutouts/lyre.png" alt="Lyre Bag" loading="lazy" fetchpriority="low" width="580" height="620">
+      </figure>
+      <figure class="floater" data-x="9" data-y0="96" data-v="-1.35" data-p0=".40" data-p1=".76" data-xm="4" style="--w:26vh;--wm:36vw">
+        <img src="https://pabepabe-preview.vercel.app/assets/img/cutouts/rainboot.png" alt="Single Rainboot" loading="lazy" fetchpriority="low" width="580" height="519">
+      </figure>
+      <p class="journey__line" data-p0=".44" data-p1=".70" data-v="-.9" style="--x:52%;--y:44%">Household objects,<br>rehomed as bags.</p>
+      <figure class="floater transformer" id="transformer" data-x="40" data-y0="86" data-v="-1.25" data-p0=".52" data-p1=".82" data-xm="30" style="--w:20vh;--wm:27vw">
+        <img class="transformer__prop" src="https://pabepabe-preview.vercel.app/assets/img/cutouts/knob-hardware.png" alt="" loading="lazy" fetchpriority="low" width="300" height="300">
+        <img class="transformer__product" src="https://pabepabe-preview.vercel.app/assets/img/cutouts/knob-mini.png" alt="KNOB Mini" loading="lazy" fetchpriority="low" width="460" height="475">
+      </figure>
+      <figure class="floater" data-x="63" data-y0="100" data-v="-1.45" data-p0=".58" data-p1=".88" data-xm="55" style="--w:25vh;--wm:34vw">
+        <img src="https://pabepabe-preview.vercel.app/assets/img/cutouts/ocarina.png" alt="Ocarina Bag" loading="lazy" fetchpriority="low" width="580" height="489">
+      </figure>
+      <figure class="floater" data-x="13" data-y0="106" data-v="-1.35" data-p0=".62" data-p1=".90" data-xm="6" style="--w:24vh;--wm:31vw">
+        <img src="https://pabepabe-preview.vercel.app/assets/img/cutouts/socket.png" alt="Socket Boston Large" loading="lazy" fetchpriority="low" width="580" height="482">
+      </figure>
+      <span class="journey__ring" data-p0=".34" data-p1=".74" data-v="-.5" style="--x:74%;--y:28%" aria-hidden="true"></span>
+      <p class="journey__line journey__line--serif" data-p0=".72" data-p1=".88" data-v="-.35" style="--x:50%;--y:80%">The dream ends on the shop floor.</p>
+
+      <!-- S4 — the seam: the white shop floor rises; the objects dock -->
+      <div class="journey__landing" id="j-landing">
+        <div class="journey__landers" id="j-landers" aria-hidden="true">
+          <img data-land="l0" src="https://pabepabe-preview.vercel.app/assets/img/cutouts/knob-large.png" alt="" loading="lazy" fetchpriority="low" width="760" height="1427">
+          <img data-land="l1" src="https://pabepabe-preview.vercel.app/assets/img/cutouts/rainboot.png" alt="" loading="lazy" fetchpriority="low" width="580" height="519">
+          <img data-land="l2" src="https://pabepabe-preview.vercel.app/assets/img/cutouts/ocarina.png" alt="" loading="lazy" fetchpriority="low" width="580" height="489">
+          <img data-land="l3" src="https://pabepabe-preview.vercel.app/assets/img/cutouts/socket.png" alt="" loading="lazy" fetchpriority="low" width="580" height="482">
+        </div>
+        <div class="rowhead journey__rowhead">
+          <h2>The same objects, on the ground.</h2>
+          <a class="u-link" href="collection.html">Shop all objects</a>
+        </div>
+        <div class="grid4 journey__grid" id="landing-grid">
+          <a class="card" href="product.html" data-id="knob-bag-large">
+            <div class="card__media">
+              <img class="img-a" src="https://pabepabe-preview.vercel.app/assets/img/knob-bag-large-a.jpg" alt="KNOB Bag Large — KNOB series" loading="lazy" fetchpriority="low" width="800" height="800">
+              <img class="img-b" src="https://pabepabe-preview.vercel.app/assets/img/knob-bag-large-b.jpg" alt="" loading="lazy" fetchpriority="low" width="821" height="1231">
+            </div>
+            <div class="card__dashes"><i class="on"></i><i></i></div>
+            <div class="card__name">KNOB Bag Large</div>
+            <div class="card__price">HK$2,860</div>
+            <div class="card__quick">
+              <button class="soldout" data-add="knob-bag-large" data-variant="Black">Black</button>
+              <button class="soldout" data-add="knob-bag-large" data-variant="Aged Brown">Aged Brown</button>
+              <button data-add="knob-bag-large" data-variant="Black + Canvas">Black + Canvas</button>
+              <button class="soldout" data-add="knob-bag-large" data-variant="Suede Brown">Suede Brown</button>
+              <button class="card__qv" data-quickview="knob-bag-large">Quick view</button>
+            </div>
+          </a>
+          <a class="card no-swap" href="product.html" data-id="single-rainboot">
+            <div class="card__media">
+              <img class="img-a" src="https://pabepabe-preview.vercel.app/assets/img/single-rainboot-a.jpg" alt="Single Rainboot — Rainboot series" loading="lazy" fetchpriority="low" width="1024" height="1024">
+            </div>
+            <div class="card__dashes"><i class="on"></i><i></i></div>
+            <div class="card__name">Single Rainboot</div>
+            <div class="card__price">HK$680</div>
+            <div class="card__quick">
+              <button data-add="single-rainboot" data-variant="Yellow">Yellow</button>
+              <button data-add="single-rainboot" data-variant="Pink">Pink</button>
+              <button data-add="single-rainboot" data-variant="Navy">Navy</button>
+              <button class="soldout" data-add="single-rainboot" data-variant="Black">Black</button>
+              <button class="card__qv" data-quickview="single-rainboot">Quick view</button>
+            </div>
+          </a>
+          <a class="card card--night" href="product.html" data-id="ocarina-bag">
+            <div class="card__media">
+              <span class="card__badge">New</span>
+              <img class="img-a" src="https://pabepabe-preview.vercel.app/assets/img/ocarina-bag-a.jpg" alt="Ocarina Bag — Sound Objects series" loading="lazy" fetchpriority="low" width="1024" height="1024">
+              <img class="img-b" src="https://pabepabe-preview.vercel.app/assets/img/ocarina-bag-b.jpg" alt="" loading="lazy" fetchpriority="low" width="1024" height="1365">
+              <span class="orbit" aria-hidden="true"><span class="orbit__ellipse"><span class="orbit__spin" style="--dur:7.2s"><span class="orbit__arm" style="--a:12deg"><span class="orbit__star" style="--s:1;--o:.95"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></span></span><span class="orbit__arm" style="--a:108deg"><span class="orbit__star" style="--s:.7;--o:.6"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></span></span><span class="orbit__arm" style="--a:204deg"><span class="orbit__star" style="--s:.85;--o:.8"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></span></span><span class="orbit__arm" style="--a:297deg"><span class="orbit__star" style="--s:.62;--o:.55"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></span></span></span></span></span>
+            </div>
+            <div class="card__dashes"><i class="on"></i><i></i></div>
+            <div class="card__name">Ocarina Bag</div>
+            <div class="card__price">HK$3,150</div>
+            <div class="card__quick">
+              <button data-add="ocarina-bag" data-variant="White">White</button>
+              <button data-add="ocarina-bag" data-variant="Black">Black</button>
+              <button class="card__qv" data-quickview="ocarina-bag">Quick view</button>
+            </div>
+          </a>
+          <a class="card" href="product.html" data-id="socket-boston-large">
+            <div class="card__media">
+              <img class="img-a" src="https://pabepabe-preview.vercel.app/assets/img/socket-boston-large-a.jpg" alt="Socket Boston Large — Socket series" loading="lazy" fetchpriority="low" width="800" height="800">
+              <img class="img-b" src="https://pabepabe-preview.vercel.app/assets/img/socket-boston-large-b.jpg" alt="" loading="lazy" fetchpriority="low" width="1024" height="1536">
+            </div>
+            <div class="card__dashes"><i class="on"></i><i></i></div>
+            <div class="card__name">Socket Boston Large</div>
+            <div class="card__price">HK$1,880</div>
+            <div class="card__quick">
+              <button data-add="socket-boston-large" data-variant="Gray">Gray</button>
+              <button data-add="socket-boston-large" data-variant="Chocolate">Chocolate</button>
+              <button data-add="socket-boston-large" data-variant="Black">Black</button>
+              <button class="soldout" data-add="socket-boston-large" data-variant="White">White</button>
+              <button class="card__qv" data-quickview="socket-boston-large">Quick view</button>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- S0 — the door: the rendered artwork, the real KNOB over its knob -->
+      <div class="journey__door" id="j-door">
+        <div class="journey__door-frame" id="j-door-frame">
+          <picture>
+            <source media="(max-width: 900px)" srcset="https://pabe-v5-door.vercel.app/door-closed.webp">
+            <img class="journey__door-img" id="j-door-closed" src="https://pabe-v5-door.vercel.app/door-closed.webp" alt="A tall door standing in a night sky, the KNOB bag hanging from its knob" fetchpriority="high" width="1536" height="1024">
+          </picture>
+          <picture>
+            <source media="(max-width: 900px)" srcset="https://pabe-v5-door-ajar.vercel.app/door-ajar.webp">
+            <img class="journey__door-img journey__door-img--ajar" id="j-door-ajar" src="https://pabe-v5-door-ajar.vercel.app/door-ajar.webp" alt="" loading="lazy" fetchpriority="low" width="1536" height="1024">
+          </picture>
+          <div class="journey__glow" id="j-glow" aria-hidden="true"></div>
+          <button class="journey__knob" id="j-knob" aria-label="Turn the knob — scroll to enter">
+            <img src="https://pabepabe-preview.vercel.app/assets/img/cutouts/knob-large.png" alt="" draggable="false" width="760" height="1427">
+          </button>
+        </div>
+      </div>
+
+      <!-- the scroll hint: a tiny knob that turns; gone after the first scroll -->
+      <div class="journey__hint" id="j-hint" aria-hidden="true">
+        <span class="journey__hint-knob">
+          <svg viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="14.5" stroke="currentColor" stroke-width="1" opacity=".55"/>
+            <g class="journey__hint-turn">
+              <circle cx="16" cy="16" r="9" fill="currentColor"/>
+              <path d="M16 16V8.6" stroke="#0E1B3D" stroke-width="2.2" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </span>
+        <span class="journey__hint-text">Scroll</span>
+      </div>
+
+      <div class="journey__grain" id="j-grain" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- 1. CATEGORY SPOTLIGHT: 50/50 split -->
+  <section aria-label="Shop by series" id="series">
+    <div class="split">
+      <a class="split__panel" href="collection.html?series=knob">
+        <img src="https://pabepabe-preview.vercel.app/assets/img/editorial-tiles.jpg" alt="Indigo canvas KNOB totes with leather flaps on dark blue tiles" loading="lazy" width="1024" height="1536" data-parallax="0.08">
+        <span class="split__labels">
+          <span class="split__name">KNOB</span>
+          <span class="split__cta">Shop KNOB</span>
+        </span>
+      </a>
+      <a class="split__panel" href="collection.html?series=sound">
+        <img src="https://pabepabe-preview.vercel.app/assets/img/lyre-bag-b.jpg" alt="Lyre Bag — Sound Objects series" loading="lazy" width="1024" height="1365" data-parallax="0.08">
+        <span class="split__labels">
+          <span class="split__name">Sound Objects</span>
+          <span class="split__cta">Shop Sound Objects</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 2. PRODUCT ROW: 4-col grid, card anatomy with dashes + hover quick-shop -->
+  <section aria-label="New objects">
+    <div class="rowhead">
+      <h2>New from Collection 10 — Living/Room</h2>
+      <a class="u-link" href="collection.html">Shop all objects</a>
+    </div>
+    <div class="grid4" id="home-grid"></div>
+  </section>
+
+  <!-- 3. ACCESSORY SPOTLIGHT: 50/50 split -->
+  <section aria-label="More series">
+    <div class="split">
+      <a class="split__panel" href="collection.html?series=rainboot">
+        <img src="https://pabepabe-preview.vercel.app/assets/img/single-rainboot-a.jpg" alt="Single Rainboot — miniature wellington crossbody pouch" loading="lazy" width="1024" height="1024" data-parallax="0.08">
+        <span class="split__labels">
+          <span class="split__name">Rainboot</span>
+          <span class="split__cta">Shop Rainboot</span>
+        </span>
+      </a>
+      <a class="split__panel" href="collection.html?series=socket">
+        <img src="https://pabepabe-preview.vercel.app/assets/img/socket-boston-large-a.jpg" alt="Socket Boston Large — leather boston bag with three-pin socket" loading="lazy" width="800" height="800" data-parallax="0.08">
+        <span class="split__labels">
+          <span class="split__name">Socket</span>
+          <span class="split__cta">Shop Socket</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 4. GALLERY+STORE: night text module (the one added module; deck 2.4) -->
+  <section class="textmod textmod--night" id="visit" aria-label="Gallery and store">
+    <span class="deco-star" style="top:22%;left:12%;width:14px;height:14px" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg>
+    </span>
+    <span class="deco-star deco-star--slow" style="top:30%;right:14%;width:10px;height:10px" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg>
+    </span>
+    <span class="eyebrow" style="opacity:.6">Gallery+Store — Central, Hong Kong</span>
+    <p class="reveal">Part exhibition space, part shop.</p>
+    <p class="reveal" style="font-size:13px;font-weight:400;text-transform:none;letter-spacing:0;line-height:1.75;max-width:54ch;margin:22px auto 0;opacity:.85">The Gallery+Store sits at G/F 62B Staunton Street, Central, Hong Kong. We lend the room to artists for shows; the bags live among the work, priced and on the wall. Open Tuesday to Sunday, 14:00–19:00. Walk-ins welcome. The door knob on the door is, as far as we know, just a door knob.</p>
+    <a class="story__link" href="art-stories.html" style="margin-top:28px">Read the art stories</a>
+  </section>
+</main>
+
+<!-- Stockist marquee: two identical row copies in an overflow-hidden track;
+     translateX(0 → -50%) wraps seamlessly (inter-copy gap == intra-row gap) -->
+<section class="stockists" aria-label="Stockists">
+  <span class="stockists__label">In good company.</span>
+  <div class="stockists__viewport">
+    <div class="stockists__track">
+      <ul class="stockists__row">
+        <li class="stockists__name">Selfridges</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+        <li class="stockists__name">CLUB21</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+        <li class="stockists__name">HBX</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+        <li class="stockists__name">K11 MUSEA</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+        <li class="stockists__name">SocietyA</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+        <li class="stockists__name">Novelty Lane</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+      </ul>
+      <ul class="stockists__row stockists__row--dup" aria-hidden="true">
+        <li class="stockists__name">Selfridges</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+        <li class="stockists__name">CLUB21</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+        <li class="stockists__name">HBX</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+        <li class="stockists__name">K11 MUSEA</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+        <li class="stockists__name">SocietyA</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+        <li class="stockists__name">Novelty Lane</li>
+        <li class="stockists__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.3 4 8.6 10 10-6 1.4-9.3 4.7-10 10-.7-5.3-4-8.6-10-10 6-1.4 9.3-4.7 10-10z" fill="currentColor"/></svg></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Footer: link columns + newsletter + giant flower mark -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>Objects</h3>
+      <ul>
+        <li><a href="collection.html">All Objects</a></li>
+        <li><a href="collection.html?series=knob">KNOB</a></li>
+        <li><a href="collection.html?series=sound">Sound Objects</a></li>
+        <li><a href="collection.html?series=rainboot">Rainboot</a></li>
+        <li><a href="collection.html?series=socket">Socket</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>The Brand</h3>
+      <ul>
+        <li><a href="art-stories.html">Art Stories</a></li>
+        <li><a href="index.html#visit">Gallery+Store</a></li>
+        <li><a href="index.html#visit">Stockists</a></li>
+        <li><a href="product.html">Shipping &amp; Returns</a></li>
+        <li><a href="index.html#visit">Contact</a></li>
+      </ul>
+      <ul style="margin-top:22px">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Xiaohongshu</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-news">
+      <h3>The Mailing List</h3>
+      <p>New objects, restocks and gallery shows — the list hears first. One email when it matters, none when it doesn't.</p>
+      <form data-newsletter novalidate>
+        <input type="email" placeholder="Email address" aria-label="Email address" required>
+        <button type="submit">Join the list</button>
+      </form>
+      <p class="ok">Thanks — you're on the list.</p>
+    </div>
+  </div>
+  <div class="footer-mark" aria-hidden="true">
+    <img src="https://pabepabe-preview.vercel.app/assets/flower-night.png" alt="" width="128" height="80">
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 PabePabe</span>
+    <span>Making strange things since 2018</span>
+    <a href="#">Hong Kong / English</a>
+  </div>
+</footer>
+
+<!-- Mobile menu -->
+<div class="mmenu" id="mmenu" inert>
+  <div class="mmenu__head">
+    <span class="logo"><img src="https://pabepabe-preview.vercel.app/assets/logo-night.png" alt="PabePabe" width="348" height="89"></span>
+    <button class="icon-btn" data-close-menu aria-label="Close menu">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.4"/></svg>
+    </button>
+  </div>
+  <div class="mmenu__body">
+    <div class="mmenu__main">
+      <div class="mmenu__acc">
+        <button class="mmenu__acc-head">Shop
+          <svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4"/></svg>
+        </button>
+        <div class="mmenu__acc-body">
+          <a href="collection.html">All Objects</a>
+          <a href="collection.html?series=knob">KNOB</a>
+          <a href="collection.html?series=script">KNOB Script</a>
+          <a href="collection.html?series=sound">Sound Objects</a>
+          <a href="collection.html?series=rainboot">Rainboot</a>
+          <a href="collection.html?series=socket">Socket</a>
+        </div>
+      </div>
+      <a class="accent" href="collection.html">Collection 10</a>
+      <a href="art-stories.html">Art Stories</a>
+      <a href="index.html#visit">Gallery+Store</a>
+    </div>
+    <div class="mmenu__util">
+      <button data-open-search>
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="5.75" cy="5.75" r="4.2" stroke="currentColor" stroke-width="1.3"/><path d="M9.5 9.5L13 13" stroke="currentColor" stroke-width="1.3"/></svg>
+        Search
+      </button>
+      <button data-open-cart>
+        <svg viewBox="0 0 14 14" fill="none"><path d="M2.5 4.5h9l-.8 8.5H3.3l-.8-8.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M5 6V3.5a2 2 0 014 0V6" stroke="currentColor" stroke-width="1.2"/></svg>
+        Cart <span data-cart-count></span>
+      </button>
+      <a href="#">Instagram</a>
+      <a href="#">Xiaohongshu</a>
+    </div>
+  </div>
+</div>
+
+<!-- Search drawer -->
+<div class="search" id="search" inert>
+  <div class="search__head">
+    <h2>Search</h2>
+    <button class="icon-btn" data-close-search aria-label="Close search">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.4"/></svg>
+    </button>
+  </div>
+  <div class="search__form">
+    <input type="search" placeholder="Search the objects" aria-label="Search the objects">
+  </div>
+  <div class="search__meta">Popular right now</div>
+  <div class="search__tags">
+    <button>KNOB</button><button>Rainboot</button><button>Socket</button><button>Ocarina</button><button>Pink</button>
+  </div>
+  <div class="search__results"></div>
+  <div class="search__all">
+    <a class="btn" href="collection.html">See all objects</a>
+  </div>
+</div>
+
+<!-- Cart drawer -->
+<div class="overlay" id="overlay"></div>
+<aside class="cart" id="cart" aria-label="Shopping cart" inert>
+  <div class="cart__head">
+    <h2>Cart <span>(0)</span></h2>
+    <button class="icon-btn" data-close-cart aria-label="Close cart">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.4"/></svg>
+    </button>
+  </div>
+  <div class="ship-bar">
+    <div class="ship-bar__msg"></div>
+    <div class="ship-bar__track"><div class="ship-bar__fill"></div></div>
+  </div>
+  <div class="cart__items"></div>
+  <div class="cart__empty">
+    <p class="t">Your cart is empty.</p>
+    <p>The objects are patient.</p>
+    <a class="u-link" href="collection.html" data-close-cart>Browse the collection</a>
+  </div>
+  <div class="cart__upsell">
+    <h3>Pairs with</h3>
+    <div class="pairs"></div>
+  </div>
+  <div class="cart__foot">
+    <div class="cart__sub"><span>Subtotal</span><span class="cart__subtotal">HK$0</span></div>
+    <p class="cart__note">Dispatched from Hong Kong. Import duties may apply — see Shipping &amp; Returns.</p>
+    <button class="btn btn--full" onclick="location.href='#'">Check out</button>
+    <a class="cart__continue" href="collection.html" data-close-cart>Continue browsing</a>
+  </div>
+</aside>
+
+<!-- Quick view modal -->
+<div class="qv" id="qv" role="dialog" aria-modal="true">
+  <div class="qv__box">
+    <button class="qv__close" data-close-qv aria-label="Close quick view">
+      <svg viewBox="0 0 12 12" fill="none"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+    <div class="qv__media"><img src="" alt=""></div>
+    <div class="qv__info">
+      <span class="qv__series"></span>
+      <h3 class="qv__title"></h3>
+      <div class="qv__price"></div>
+      <div class="qv__thumbs"></div>
+      <p class="qv__desc"></p>
+      <div>
+        <div class="opt-label">Colour</div>
+        <div class="pills"></div>
+      </div>
+      <button class="btn btn--full" data-qv-add>Add to cart</button>
+      <a class="qv__view" href="product.html">View full details</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://pabe-v5-code.vercel.app/js/products.min.js"></script>
+<script src="https://pabe-v5-code.vercel.app/js/main.min.js"></script>
+<script src="https://pabe-v5-code.vercel.app/js/knob-door.min.js"></script>
+<script>
+(function () {
+  // Homepage product row: 4 newest objects
+  const grid = document.getElementById('home-grid');
+  const items = PRODUCTS.slice().sort((a, b) => b.added - a.added).slice(0, 4);
+  grid.innerHTML = items.map(renderCard).join('');
+  // Header transparency over the journey is synced by knob-door.js.
+})();
+</script>
+</body>
+</html>
