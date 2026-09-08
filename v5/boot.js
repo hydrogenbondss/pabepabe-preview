@@ -1,5 +1,6 @@
 (async function () {
   var SRC = 'https://cdn.jsdelivr.net/gh/hydrogenbondss/pabepabe-preview@5ca894a6ce3d4c9daffabaf2a95f9140b5910457/v5/index.html';
+  var KNOB = 'https://cdn.jsdelivr.net/gh/hydrogenbondss/pabepabe-preview@main/v5/js/knob-door.min.js';
   var POLISH = [
     ":root{--serif:'Instrument Serif','Times New Roman',Times,serif}",
     'body{font-size:15px;line-height:1.55;text-rendering:optimizeLegibility}',
@@ -46,13 +47,11 @@
     if (!res.ok) throw new Error('fetch ' + res.status);
     var html = await res.text();
 
-    // Expressive gallery face
     html = html.replace(
       /family=IBM\+Plex\+Mono:wght@400;500&display=swap/g,
       'family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap'
     );
 
-    // Title clearance + caption line position
     html = html.replace(
       'class="journey__title" data-p0=".24" data-p1=".58" data-v="-.28" style="--x:7%;--y:9%"',
       'class="journey__title" data-p0=".24" data-p1=".52" data-v="-.18" style="--x:7%;--y:12%"'
@@ -62,13 +61,11 @@
       'class="journey__line" data-p0=".44" data-p1=".70" data-v="-.9" style="--x:52%;--y:38%"'
     );
 
-    // Polished knob-door (local on this repo) — kill cream glow / noisy sparks
     html = html.replace(
       'src="https://pabe-v5-code.vercel.app/js/knob-door.min.js"',
-      'src="js/knob-door.min.js"'
+      'src="' + KNOB + '"'
     );
 
-    // Inject polish overrides after main stylesheet
     html = html.replace(
       '<link rel="stylesheet" href="https://pabe-v5-code.vercel.app/css/main.min.css">',
       '<link rel="stylesheet" href="https://pabe-v5-code.vercel.app/css/main.min.css">\n<style id="pabe-polish">\n' + POLISH + '\n</style>'
